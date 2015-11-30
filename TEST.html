@@ -18,7 +18,9 @@
 		// for (i = 0; i < 8; i++) {
 		//	prizenumbers[i] = normal_distribution();
 		//}	
-//		prizenumbers = [1, 2, 3, 4, 5, 6, 7, 8];
+
+			
+			
 			prizes[0] = {"name" : prizenumbers[0] + " cents today", "startAngle" : 0,   "endAngle" : 44};  // Note how prize end angle is 1 less than start angle of next prize so no overlap.
 			prizes[1] = {"name" : prizenumbers[7] + " cents today", "startAngle" : 45,  "endAngle" : 89};
 			prizes[2] = {"name" : prizenumbers[6] + " cents today", "startAngle" : 90,  "endAngle" : 134};
@@ -35,7 +37,6 @@
 
 	</script>
 	<script type='text/javascript' src='http://cdnjs.cloudflare.com/ajax/libs/mathjs/2.4.1/math.js'></script>	
-
 	</head>
 	<body>
 		<div align="center">
@@ -68,15 +69,15 @@
 		
 		</div>
 		<div>
-
+		<p id = "demo">FAILURE</p>	
 		<script type = 'text/javascript'>
-			
+		//	document.getElementById('demo').innerHTML() = (prizenumbers[1] + prizenumbers[2] + prizenumbers[3] + prizenumbers[4] + prizenumbers[5] + prizenumbers[6] + prizenumbers[7] + prizenumbers[8]).toString();
 
 			
 		</script>
 		</div>
 		<script>
-			//<p id = "demo">FAILURE</p>		
+				
 			// Call function to draw the wheel face at it's initial position.
 			begin();
 			
