@@ -1,0 +1,87 @@
+<!--
+	HTML5 Canvas + JavaScript winning wheel
+	Created by Douglas McKechie @ http://www.dougtesting.net as an example.
+	Last updated 14 July 2013.
+	
+	Code to render and spin the wheel is in winwheel_1.2.js.
+-->
+<html>
+	<head>
+		<title>HTML5 Canvas Winning Wheel</title>
+	<link rel="stylesheet" href="https://vlab.decisionsciences.columbia.edu/DanWall/winwheel/main.css" type="text/css" />
+	<script type='text/javascript' src='file:///C:/Users/HemmerLab/Documents/Code/Prize_Wheel_Distribution/winwheel_1EDIT.2'></script>
+	<script>
+		 // specify the image to be rotated
+		 var wheelImageName   = "file:///C:/Users/HemmerLab/Pictures/EmptyWheel.png";	// File name of the image for the wheel. */
+		 // specify what are the prizes starting from 12 oclock and going clockwise
+		 var prizes = new Array();
+		// for (i = 0; i < 8; i++) {
+		//	prizenumbers[i] = normal_distribution();
+		//}	
+//		prizenumbers = [1, 2, 3, 4, 5, 6, 7, 8];
+			prizes[0] = {"name" : prizenumbers[0] + " cents today", "startAngle" : 0,   "endAngle" : 44};  // Note how prize end angle is 1 less than start angle of next prize so no overlap.
+			prizes[1] = {"name" : prizenumbers[7] + " cents today", "startAngle" : 45,  "endAngle" : 89};
+			prizes[2] = {"name" : prizenumbers[6] + " cents today", "startAngle" : 90,  "endAngle" : 134};
+			prizes[3] = {"name" : prizenumbers[5] + " cents today", "startAngle" : 135, "endAngle" : 179};
+			prizes[4] = {"name" : prizenumbers[4] + " cents today", "startAngle" : 180, "endAngle" : 224};
+			prizes[5] = {"name" : prizenumbers[3] + " cents today", "startAngle" : 225, "endAngle" : 269};
+			prizes[6] = {"name" : prizenumbers[2] + " cents today", "startAngle" : 270, "endAngle" : 314};
+			prizes[7] = {"name" : prizenumbers[1] + " cents today", "startAngle" : 315, "endAngle" : 360};
+		// specify what the prize number is in the qualtrics embedded data
+		var prizeno = "prize1"	
+		
+		
+		
+
+	</script>
+	<script type='text/javascript' src='http://cdnjs.cloudflare.com/ajax/libs/mathjs/2.4.1/math.js'></script>	
+
+	</head>
+	<body>
+		<div align="center">
+			<br />
+			<hr />
+			<table cellpadding="0" cellspacing="0" border="0">
+				<tr>
+					<td>
+						<div class="power_controls" align="right">
+
+							<img id="spin_button" src="https://vlab.decisionsciences.columbia.edu/DanWall/winwheel/spin_on.png" alt="Spin" onClick="startSpin();" />
+							<br />
+							<br />
+						</div>
+					</td>
+					<td width="438" height="582" class="the_wheel" align="center" valign="center">
+						<canvas class="the_canvas" id="myDrawingCanvas" width="434" height="434">
+							<p class="noCanvasMsg" align="center">Sorry, your browser doesn't support canvas.<br />Please try another.</p>
+							
+						</canvas>
+					</td>
+				</tr>
+			</table>
+			<span id="wintext"></span>
+			<br />
+			<hr />
+			<br />
+		
+		
+		
+		</div>
+		<div>
+
+		<script type = 'text/javascript'>
+			
+
+			
+		</script>
+		</div>
+		<script>
+			//<p id = "demo">FAILURE</p>		
+			// Call function to draw the wheel face at it's initial position.
+			begin();
+			
+			
+		</script> 
+
+	</body>
+</html>
