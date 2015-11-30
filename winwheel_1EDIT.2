@@ -48,10 +48,10 @@ var spinMode         = "random"; // Values can be: random, determinedAngle, dete
 var determinedGetUrl = "";  	 // Set to URL of the server-side process to load via ajax when spinMode is determinedAngle or determinedPrize.
 
 // These variables are all used in the creation of a normal distribution. Edit the normal_mean and normal_std to change the mean and standard deviation for each wheel.
-var distributions = new Array();		// Don't edit this.
-var normal_mean = 100;					// Change this to what you want the mean to be.
-var normal_std = 50;					// Change this to what you want the standard deviation to be.
-var prizenumbers = [normal_distribution(), normal_distribution(), normal_distribution(), normal_distribution(), normal_distribution(), normal_distribution(), normal_distribution(), normal_distribution()]; 	// Don't edit this.
+var distributions = new Array();			// Don't edit this.
+var normal_mean = 100;						// Change this to what you want the mean to be.
+var normal_std = 50;						// Change this to what you want the standard deviation to be.
+var prizenumbers = [normal_distribution(), normal_distribution(), normal_distribution(), normal_distribution(), normal_distribution(), normal_distribution(), normal_distribution(), normal_distribution()];
 
 /*
 	The following files included in the download can be used to test the different modes (you will need an Apache server; I use XAMPP on my local machine).
@@ -167,6 +167,12 @@ function texting()
 	surfaceContext.restore();
 }
 
+function binomal_distribution() {
+	var rand = Math.floor(Math.random() * 2);
+	return rand;
+	
+}
+
 // ======================================================================================================================================================
 // This function returns a z score using n, the number whose z score you wish to calculate, the mean, and the standard deviation.
 // ======================================================================================================================================================
@@ -189,12 +195,6 @@ function normalize(z, mean, std) {
 // By taking the means of 1000 Binomial_distribution functions, you get mean which follows a normal distribution, with a mean of 500 and a standard deviation
 // of 50. 
 // ======================================================================================================================================================
-function binomal_distribution() {
-	var rand = Math.floor(Math.random() * 2);
-	return rand;
-	
-}
-
 function normal_distribution() {
 	var total = 0;
 	distributions = [];
@@ -207,10 +207,9 @@ function normal_distribution() {
 	}
 	var mean = distributions.length * 0.5
 	var std = Math.sqrt(distributions.length * 0.25);
+
 	
 	return Math.floor(normalize(zscore(total, mean, std), normal_mean, normal_std));
-
-	}
 }
 
 // ================================================================================================================================================================
