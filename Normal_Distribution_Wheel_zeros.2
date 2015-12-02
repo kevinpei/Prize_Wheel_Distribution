@@ -54,11 +54,12 @@ var normal_mean = 100;		 		// Determines what the true mean of the distribution 
 var normal_std = 50;				// Determines what the standard deviation of the distribution is.
 var stdrange = 0;					// Determines how many standard deviations the mean of the wheel must stay within the true mean.
 // Change stdrange to 0 to make it so that the mean of the wheel values has to equal normal_mean.
-var numzeros = 4;					// Determines how many zeros are in the distribution.
+var numzeros = 0;					// Determines how many zeros are in the distribution.
 
-var iszero = [];			// Don't edit this.
+var iszero = [0, 0, 0, 0, 0, 0, 0, 0];			// Don't edit this.
 var distributions = new Array();	// Don't edit this.
 var prizenumbers = new Array();		// Don't edit this.
+assignzeros(iszero);
 
 
 /*
@@ -181,6 +182,18 @@ function binomal_distribution() {
 }
 
 // ======================================================================================================================================================
+// This function assigns the number of zeros required randomly.
+// ======================================================================================================================================================
+function assignzeros(Arr) {
+	while (sum(iszero) < numzeros) {
+		for (i = 0; i < numzeros; i++)
+			rand = Math.floor(Math.random() * 8);
+			Arr[rand] = 0;
+			iszero[rand] = 1;
+	}
+}
+
+// ======================================================================================================================================================
 // This function sums all the elements in an array.
 // ======================================================================================================================================================
 function sum(Arr) {
@@ -190,6 +203,7 @@ function sum(Arr) {
 	}
 	return total;
 }
+
 // ======================================================================================================================================================
 // This function returns a z score using n, the number whose z score you wish to calculate, the mean, and the standard deviation.
 // ======================================================================================================================================================
@@ -234,16 +248,26 @@ function normal_distribution() {
 // ===========================================================================================================================================================================
 function assign(Arr) {
 	for (j = 0; j < 8; j++) {
-		Arr[j] = normal_distribution();	
-		while (Arr[j] < 1) {
+		if (iszero[j] == 0) {
+			Arr[j] = normal_distribution();				
+		}
+		else {
+			Arr[j] = 0;
+		}
+		while (Arr[j] < 1 && iszero[j] == 0) {
 			Arr[j] = normal_distribution();
 		}
 	} 
 	
-	while ((zscore((sum(Arr) / 8), normal_mean, normal_std) > stdrange) || (zscore((sum(Arr) / 8), normal_mean, normal_std) < -stdrange)) {
+	while ((zscore((sum(Arr) / (8 - numzeros)), normal_mean, normal_std) > stdrange) || (zscore((sum(Arr) / (8 - numzeros)), normal_mean, normal_std) < -stdrange)) {
 		for (j = 0; j < 8; j++) {
-		Arr[j] = normal_distribution();	
-		while (Arr[j] < 1) {
+		if (iszero[j] == 0) {
+			Arr[j] = normal_distribution();				
+		}
+		else {
+			Arr[j] = 0;
+		}
+		while (Arr[j] < 1 && iszero[j] == 0) {
 			Arr[j] = normal_distribution();
 		}
 	} 
