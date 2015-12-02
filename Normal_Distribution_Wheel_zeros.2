@@ -59,7 +59,7 @@ var numzeros = 0;					// Determines how many zeros are in the distribution.
 var iszero = [0, 0, 0, 0, 0, 0, 0, 0];			// Don't edit this.
 var distributions = new Array();	// Don't edit this.
 var prizenumbers = new Array();		// Don't edit this.
-assignzeros(iszero);
+
 
 
 /*
@@ -185,6 +185,12 @@ function binomal_distribution() {
 // This function assigns the number of zeros required randomly.
 // ======================================================================================================================================================
 function assignzeros(Arr) {
+	if (numzeros > 7) {
+		numzeros = 7;
+	}
+	if (numzeros < 0) {
+		numzeros = 0;
+	}
 	while (sum(iszero) < numzeros) {
 		for (i = 0; i < numzeros; i++)
 			rand = Math.floor(Math.random() * 8);

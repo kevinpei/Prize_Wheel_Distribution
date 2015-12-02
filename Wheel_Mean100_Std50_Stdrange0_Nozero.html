@@ -21,7 +21,8 @@
 			stdrange = 0;			//Change this to change how far the mean of the wheel values should deviate from the true mean in standard deviations
 			numzeros = 0;			//Change this to change how many zeros will be in the wheel.
 
-			assign(prizenumbers);	//Assigns the prizenumbers array values depending on your normal_mean, normal_std, and stdrange values
+			assignzeros(prizenumbers);	//Assigns the zeros to the array
+			assign(prizenumbers);		//Assigns the prizenumbers array values depending on your normal_mean, normal_std, and stdrange values
 			
 			prizes[0] = {"name" : "$" + prizenumbers[0] + " today", "startAngle" : 0,   "endAngle" : 44};  // Note how prize end angle is 1 less than start angle of next prize so no overlap.
 			prizes[1] = {"name" : "$" + prizenumbers[7] + " today", "startAngle" : 45,  "endAngle" : 89};
@@ -71,12 +72,14 @@
 		
 		</div>
 		<div>
+<!--	For testing purposes. 
+
 		<p id = "demo">FAILURE</p>	
 		<script type = 'text/javascript'>
 			document.getElementById('demo').innerHTML = (prizenumbers[1] + prizenumbers[2] + prizenumbers[3] + prizenumbers[4] + prizenumbers[5] + prizenumbers[6] + prizenumbers[7] + prizenumbers[0])/8;
 
 			
-		</script>
+		</script>-->
 		</div>
 		<script>
 				
