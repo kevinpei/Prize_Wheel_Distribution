@@ -147,7 +147,6 @@ function texting()
 	var surfaceContext = surface.getContext("2d");
 	surfaceContext.save();
 	surfaceContext.translate(wheel.width * 0.5, wheel.height * 0.5);
-	surfaceContext.rotate(DegToRad(22.5));
 	surfaceContext.translate(-wheel.width * 0.5, -wheel.height * 0.5);
 	
 	for (i = 1; i < 8; i++)
@@ -160,13 +159,13 @@ function texting()
 	
 	surfaceContext.drawImage(wheel, 0, 0);
 	surfaceContext.font = "30px Arial";
-	surfaceContext.fillText(prizenumbers[0], 310, 190);	
+	surfaceContext.fillText("$" + prizenumbers[0], 310, 190);	
 	
 	for (i = 1; i < 8; i++)
 	{
 		surfaceContext.restore();
 		surfaceContext.font = "30px Arial";
-		surfaceContext.fillText(prizenumbers[i], 310, 190);
+		surfaceContext.fillText("$" + prizenumbers[i], 310, 190);
 	}
 	
 	surfaceContext.restore();
