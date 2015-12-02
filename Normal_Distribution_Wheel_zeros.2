@@ -54,9 +54,12 @@ var normal_mean = 100;		 		// Determines what the true mean of the distribution 
 var normal_std = 50;				// Determines what the standard deviation of the distribution is.
 var stdrange = 0;					// Determines how many standard deviations the mean of the wheel must stay within the true mean.
 // Change stdrange to 0 to make it so that the mean of the wheel values has to equal normal_mean.
+var numzeros = 4;					// Determines how many zeros are in the distribution.
 
+var iszero = [];			// Don't edit this.
 var distributions = new Array();	// Don't edit this.
 var prizenumbers = new Array();		// Don't edit this.
+
 
 /*
 	The following files included in the download can be used to test the different modes (you will need an Apache server; I use XAMPP on my local machine).
@@ -178,6 +181,16 @@ function binomal_distribution() {
 }
 
 // ======================================================================================================================================================
+// This function sums all the elements in an array.
+// ======================================================================================================================================================
+function sum(Arr) {
+	var total = 0;
+	for (i = 0; i < Arr.length; i++) {
+		total += Arr[i];
+	}
+	return total;
+}
+// ======================================================================================================================================================
 // This function returns a z score using n, the number whose z score you wish to calculate, the mean, and the standard deviation.
 // ======================================================================================================================================================
 function zscore(n, mean, std) {
@@ -214,17 +227,6 @@ function normal_distribution() {
 
 	
 	return Math.floor(normalize(zscore(total, mean, std), normal_mean, normal_std));
-}
-
-// ======================================================================================================================================================
-// This function sums all the elements in an array.
-// ======================================================================================================================================================
-function sum(Arr) {
-	var total = 0;
-	for (i = 0; i < Arr.length; i++) {
-		total += Arr[i];
-	}
-	return total;
 }
 
 // ===========================================================================================================================================================================
