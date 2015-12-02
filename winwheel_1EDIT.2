@@ -48,10 +48,15 @@ var spinMode         = "random"; // Values can be: random, determinedAngle, dete
 var determinedGetUrl = "";  	 // Set to URL of the server-side process to load via ajax when spinMode is determinedAngle or determinedPrize.
 
 // These variables are all used in the creation of a normal distribution. Edit the normal_mean and normal_std to change the mean and standard deviation for each wheel.
-var distributions = new Array();			// Don't edit this.
-var normal_mean = 100;						// Change this to what you want the mean to be.
-var normal_std = 50;						// Change this to what you want the standard deviation to be.
-var prizenumbers = [normal_distribution(), normal_distribution(), normal_distribution(), normal_distribution(), normal_distribution(), normal_distribution(), normal_distribution(), normal_distribution()];
+// normal_mean determines what the mean of all the value on the wheel SHOULD be (after an infinite number of trials) and normal_std determines the standard deviation for the wheel values.
+// stdrange keeps the mean of the wheel values within a certain number of standard deviations within normal_mean (so that the mean of the values on the wheel doesn't fluctuate too much from the mean we want).
+var normal_mean = 100;		 		// Change this to what you want the true mean of the distribution to be.
+var normal_std = 50;				// Change this to what you want the standard deviation to be.
+var stdrange = 0;					// Change this to keep the mean of the wheel values within that many standard deviations of the true mean.
+// Change stdrange to 0 to make it so that the mean of the wheel values has to equal normal_mean.
+
+var distributions = new Array();	// Don't edit this.
+var prizenumbers = new Array();		// Don't edit this.
 
 /*
 	The following files included in the download can be used to test the different modes (you will need an Apache server; I use XAMPP on my local machine).
@@ -215,13 +220,23 @@ function normal_distribution() {
 // ================================================================================================================================================================
 // This function takes an array and fills it with normally distributed values such that the distribution's mean is within 0.5 standard deviations of the actual mean.
 // ================================================================================================================================================================
-//function assign(Arr) {
-//	while ((zscore((Arr[1] + Arr[2] + Arr[3] + Arr[4] + Arr[5] + Arr[6] + Arr[7] + Arr[8]), normal_mean, normal_std) < -0.5) || (zscore((Arr[1] + Arr[2] + Arr[3] + Arr[4] + Arr[5] + Arr[6] + Arr[7] + Arr[8]), normal_mean, normal_std) > 0.5)) {
-//		for (i = 0, i < Arr.length(), i++) {
-//			Arr[i] = normal_distribution();
-//		}
-//	}
-//}
+function assign(Arr) {
+	for (j = 0; j < 8; j++) {
+		Arr[j] = normal_distribution();	
+		while (Arr[j] < 1) {
+			Arr[j] = normal_distribution();
+		}
+	} 
+	
+	while ((zscore(((Arr[0] + Arr[1] + Arr[2] + Arr[3] + Arr[4] + Arr[5] + Arr[6] + Arr[7]) / 8), normal_mean, normal_std) > stdrange) || (zscore(((Arr[0] + Arr[1] + Arr[2] + Arr[3] + Arr[4] + Arr[5] + Arr[6] + Arr[7]) / 8), normal_mean, normal_std) < -stdrange)) {
+		for (j = 0; j < 8; j++) {
+		Arr[j] = normal_distribution();	
+		while (Arr[j] < 1) {
+			Arr[j] = normal_distribution();
+		}
+	} 
+	}
+}
 
 // ==================================================================================================================================================
 // This function is called when the spin button is clicked, it works out the targetAngle using the specified spin mode, then kicks off the spinning.
